@@ -1,0 +1,42 @@
+<!-- Modal header start -->
+<div class="modal-header">
+  <h2 class="modal-title">Edit</h2> <!-- Modal title -->
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span> <!-- Modal button to close it -->
+  </button>
+</div>
+<!-- Modal header finish -->
+
+<!-- Modal body start -->
+<div class="modal-body"> 
+  <div class="container">
+    <div class="row">
+      <!-- form to add image and description -->
+      <div *ngFor="let edit of images; let i = index">
+        <form [formGroup]="editForm" (ngSubmit)="update(edit.id)" class="formPosition"> 
+          <div class="form-group">
+            <label for="id">Id:
+              <input [(ngModel)]="edit.id" name="id{{i}}" formControlName="no"> <!-- input field to upload image -->
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="myfile">Select files: {{edit.url}}
+              <input [(ngModel)]="edit.url" type="file" formControlName="myfile" 
+                     (change)="onFileSelected($event)"> <!-- input field to upload image -->
+            </label>
+          </div>
+          <div class="form-group">
+            <label>Description/Caption
+              <textarea [(ngModel)]="edit.caption" rows="4" cols="40" 
+              formControlName="desc"></textarea> <!-- textarea to write caption or description for image -->
+            </label>
+          </div>
+          <div class="form-group">  
+              <button type="submit" class="btn btn-default submit-button">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal body finish -->

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <!-- Header slider start -->
+      <ngb-carousel>
+        <!-- for loop to display carousel images stored in array -->
+        <ng-container *ngFor="let item of images;"> 
+          <!-- template to display carousel images in proper design -->
+          <ng-template ngbSlide>
+            <div class="wrapper carousel-inner">
+              <!-- fetching images from array -->
+              <img src="{{item.url}}" alt="Random slide">
+            </div>
+            <div class="carousel-caption">
+              <!-- fetching description for images from array -->
+              <h1>{{item.caption}}</h1>
+            </div>
+          </ng-template>
+        </ng-container>
+      </ngb-carousel>
+      <!-- Header slider finish -->
+      
+      <!-- table body start -->
+      <div class="container">
+        <div class="row">
+          <h2 class="table-heading">List of images and caption</h2>
+          <table class="table table-bordered table-hover">
+            <thead>
+              <!-- Headings for table -->
+              <th>Sr. No.</th>
+              <th>Image URL</th>
+              <th>Heading/Description</th>
+              <th>Edit</th>
+              <th>Remove</th>
+            </thead>
+          
+            <tbody>
+              <!-- fetching data from array and displaying it in table -->
+              <tr *ngFor="let addData of images; index as i">
+                <td>{{addData.id}}</td>
+                <td> 
+                  <!-- code for inline table edit functionality -->
+                  <app-inline-edit [(ngModel)]="addData.url" (change)="onFileSelected($event)" type="file"></app-inline-edit>
+                </td>
+                <td>
+                  <app-inline-edit [(ngModel)]="addData.caption" type="text"></app-inline-edit>
+                </td>
+                <td class="delete-center">
+                  <button class="btn btn-success" (click)="openEditForm(addData.id)">Edit</button>
+                </td>
+                <!-- button for deleting data from array -->
+                <td class="delete-center">
+                  <button class="btn btn-danger remove-button" (click)="deleteImage(i)">X</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- table body finish -->
+    
+      <div class="container">
+        <div class="row">
+          <!-- button for adding more slides in table and displaying it in carousel -->
+          <button type="button" class="btn btn-default add-button" (click)="openForm()">
+            <span class="noselect">Add new slide</span><div id="circle"></div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

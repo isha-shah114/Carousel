@@ -1,0 +1,71 @@
+@import '~@angular/cdk/overlay-prebuilt.css';
+@import 'responsive.scss';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+a { color: #1c1e1f; }
+
+.container-fluid{
+  padding-right: 0;
+  padding-left: 0;
+}
+
+//class for carousel image
+ngb-carousel .wrapper {
+  position: relative;
+  height: 0;
+  padding-top: 55%; /* Keep ratio for 900x500 images */
+}
+
+ngb-carousel .wrapper>img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+}
+
+.mat-typography h1 { font-size: 80px; }
+.carousel-inner { height: 625px; }
+.carousel-caption { bottom: 50%; }
+
+.table {
+  border-collapse: collapse;
+  position: relative;
+  margin: 4% auto 3%;
+  width: 80%;
+  cursor: pointer;
+  box-shadow: 2px 2px 7px #292929;;
+
+  th , td{
+    border: 1px solid #d2caca;
+    padding: 12px;
+  }
+
+  th { font-weight: 500; }
+
+  thead {
+    background-image: linear-gradient(to right, #1f395c, #dc3545);
+    color: #fff;;
+  }
+
+  tr:hover {
+    background-color: #DDD;
+  }
+  tr.selected {
+    background-color: #CFD8DC;
+  }
+  tr.selected:hover {
+    background-color: #BBD8DC;
+  }
+}
+.modal-dialog { max-width: 380px; }
+
+.mat-h2, .mat-title, .mat-typography h2 {
+  margin: 0 5%;
+  color: #fff;
+}
+.modal-header { background-color: #1f395c; }
+.close { color: #fff; }
+.modal-dialog-scrollable .modal-body { background-color: antiquewhite; }

@@ -1,0 +1,39 @@
+<!-- Modal header start -->
+<div class="modal-header">
+  <h2 class="modal-title">Add Slide</h2> <!-- Modal title -->
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span> <!-- Modal button to close it -->
+  </button>
+</div>
+<!-- Modal header finish -->
+
+<!-- Modal body start -->
+<div class="modal-body"> 
+  <div class="container">
+    <div class="row">
+      <!-- form to add image and description -->
+      <form [formGroup]="sliderForm" (ngSubmit)="onSubmit()" class="formPosition"> 
+        <div class="form-group">
+          <label for="id">Id:
+            <input type="number" formControlName="no"> <!-- input field to upload image -->
+          </label>
+        </div>
+          <div class="form-group">
+            <label for="myfile">Select files:
+              <input type="file" formControlName="myfile" (change)="onFileSelected($event)"> <!-- input field to upload image -->
+            </label>
+          </div>
+          <div class="form-group">
+            <label>Description/Caption
+              <textarea ng-model="myTextarea" rows="4" cols="40" 
+              formControlName="desc"></textarea> <!-- textarea to write caption or description for image -->
+            </label>
+          </div>
+          <div class="form-group">  
+            <button type="submit" class="btn btn-default submit-button">Submit</button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Modal body finish -->

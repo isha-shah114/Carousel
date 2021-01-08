@@ -1,0 +1,226 @@
+$button-bg : hsl(214, 50%, 24%); //color for button background
+$font-color-white: #fff; //color for font
+$hover-shadow: 2px 2px 7px #292929; //shadow and its color for button onhover effect
+
+.table-heading {
+  color: $button-bg;
+  font-size: xx-large;
+  margin: 5% 32% 0;
+  font-family: cursive;
+}
+
+.table-heading:after {
+  content: "";
+    width: 15%;
+    border-bottom: 4px solid #b2364a;
+    position: absolute;
+    left: 42%;
+    padding-top: 3%;
+}
+
+.delete-center { text-align: center; }
+.remove-button { font-size: small; }
+.add-button {
+  background: $button-bg;
+  border: none;
+  padding: 12px 21px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 17px;
+  position: relative;
+  left: 43%;
+  color: $font-color-white;
+  margin-bottom: 4%;
+  transition: 1s;
+  -webkit-tap-highlight-color: transparent;
+
+  #circle {
+    width: 5px;
+    height: 5px;
+    background: transparent;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    overflow: hidden;
+    transition: 500ms;
+  }
+  
+  .noselect {
+    -webkit-touch-callout: none;
+      -webkit-user-select: none;
+       -khtml-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+  }
+  
+  &:hover {
+    background: transparent;
+    color: $button-bg;
+  }
+
+  &:hover #circle {
+    height: 50px;
+    width: 150px;
+    left: 0;
+    border-radius: 15%;
+    border-bottom: 2px solid $button-bg;
+  }
+}
+
+/******************************************RESPONSIVENESS******************************************/
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .table-heading {
+    font-size: xx-large;
+    margin: 5% 29% 2%;
+  }
+  .table-heading:after {
+    width: 20%;
+    left: 39%;
+    padding-top: 4%;
+  }
+}
+@media screen and (min-width: 541px) and (max-width: 768px){
+  .table-heading {
+    font-size: xx-large;
+    margin: 5% 23% 2%;
+  }
+  .table-heading:after {
+    width: 25%;
+    left: 37%;
+    padding-top: 5%;
+  }
+  .add-button {  
+    left: 40%; 
+  }
+}
+@media screen and (max-width: 540px) {
+  .table-heading {
+    font-size: larger;
+    margin: 5% 28% 2%;
+  }
+  .table-heading:after {
+    width: 20%;
+    left: 40%;
+    padding-top: 5%;
+  }
+  .add-button {  
+    left: 39%; 
+    padding: 10px 14px; 
+    font-size: 14px; 
+    
+    &:hover #circle {
+      height: 40px;
+      width: 112px;
+    }
+  }
+}
+@media screen and (min-width: 412px) and (max-width: 539px) {
+  .table-heading {
+    font-size: larger;
+    margin: 5% 21% 2%;
+  }
+  .table-heading:after {
+    width: 25%;
+    left: 37%;
+    padding-top: 8%;
+  }
+  .add-button {  
+    left: 36%; 
+    padding: 10px 14px; 
+    font-size: 14px; 
+    
+    &:hover #circle {
+      height: 40px;
+      width: 112px;
+    }
+  }
+}
+@media screen and (min-width: 361px) and (max-width: 411px) {
+  .table-heading {
+    font-size: larger;
+    margin: 5% 21% 2%;
+  }
+    
+  .table-heading:after {
+    width: 25%;
+    left: 37%;
+    padding-top: 8%;
+  }
+  .add-button {  
+    left: 36%; 
+    padding: 10px 14px; 
+    font-size: 14px; 
+    
+    &:hover #circle {
+      height: 40px;
+      width: 112px;
+    }
+  }
+}
+@media screen and (max-width: 375px) {
+  .table-heading {
+    font-size: larger;
+    margin: 5% 18% 2%;
+  }
+  .table-heading:after {
+    width: 25%;
+    left: 37%;
+    padding-top: 8%;
+  }
+  .add-button { 
+    left: 34%; 
+    &:hover #circle {
+      height: 40px;
+      width: 112px;
+    }
+  }
+}
+@media screen and (max-width: 360px) {
+  .table-heading {
+    font-size: larger;
+    margin: 5% 17% 2%;
+  }
+    
+  .table-heading:after {
+    width: 25%;
+    left: 37%;
+    padding-top: 8%;
+  }
+  .add-button {  
+    left: 34%; 
+    padding: 10px 14px; 
+    font-size: 14px;  
+
+    &:hover #circle {
+      height: 40px;
+      width: 112px;
+    }
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .table-heading {
+    font-size: medium;
+    margin: 5% 19% 2%;
+  }
+    
+  .table-heading:after {
+    width: 25%;
+    left: 37%;
+    padding-top: 8%;
+  }
+  .add-button {  
+    padding: 8px 10px;
+    border-radius: 7px;
+    font-size: 12px;
+    position: relative;
+    left: 35%; 
+    
+    &:hover #circle {
+      height: 40px;
+      width: 95px;
+    }
+  }
+}
