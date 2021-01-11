@@ -101,18 +101,11 @@ export class SliderComponent implements OnInit {
   } 
   selectedRow;
   openEditForm(targetModal, user) {
-    // this.editForm.patchValue({
-    //   myfile: user.url,
-    //   desc: user.caption,
-    //  });
-     
     //opening form into modal
-    
     const modalRef = this._NgbModal.open(targetModal, {
         windowClass: 'modal-job-scrollable'
       });
       this.selectedRow = {id:user.id, url:user.url, caption: user.caption};
-      console.log(this.selectedRow);
 
       // upwrap the "app-ng-modal" data to enable the "modal-dialog-scrollable"
     // and make the modal scrollable
@@ -135,16 +128,17 @@ export class SliderComponent implements OnInit {
   } 
 
   update(e) {
-    this._NgbModal.dismissAll();
     this.members = this.images;
     this.editUser = this.members.filter(item => item.id == e);
     console.log(this.editUser);
+    this.editUser = this.editForm.value;
+    console.log(this.editUser);
+    
     let userEdit = this.members.filter(item => item.id != e);
     let user = this.members.filter(item => item.id == e);
     console.log(userEdit);
     
-    this.editUser = this.editForm.value;
-    console.log(this.editUser);
+    
 
     if(this.editUser.id == user[0].id)
     {
@@ -153,15 +147,6 @@ export class SliderComponent implements OnInit {
       console.log(userEdit);
       console.log(this.images);
     }
-
-    
-    
-    // alert('Updated');
-
-    // this.editForm.patchValue({
-    //   myfile: this.editUser.myfile,
-    //   desc: this.editUser.desc,
-    //  });
-     
+    alert('Updated');
   }
 }

@@ -5,7 +5,6 @@
   </head>
   <body>
     <div class="container-fluid">
-      
       <ngb-carousel> <!-- Header slider start -->
         <!-- for loop to display carousel images stored in array -->
         <ng-container *ngFor="let item of images;"> 
@@ -58,45 +57,46 @@
       <ng-template #editProfileModal>
         <div class="modal-header"> <!-- Modal header start -->
           <h2 class="modal-title">Edit</h2> <!-- Modal title -->
-          <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+          <button type="button" class="close" aria-label="Close" 
+                  (click)="activeModal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span> <!-- Modal button to close it -->
           </button>
-        </div><!-- Modal header finish -->
+        </div> <!-- Modal header finish -->
 
         <div class="modal-body"> <!-- Modal body start -->
           <div class="container">
             <div class="row">
               <!-- form to add image and description -->
-              <form [formGroup]="editForm" (ngSubmit)="update(selectedRow.id)" class="formPosition"> 
-                <div class="form-group">
-                  <label for="id">Id:
-                    <!-- input field for id -->
-                    <input [(ngModel)]="selectedRow.id" formControlName="id" [attr.disabled]="true">
-                  </label>
-                </div>
-                <div class="form-group">
-                  <label for="myfile">Select files: {{selectedRow.url}}
-                    <!-- input field to upload image -->
-                    <input [(ngModel)]="selectedRow.url" formControlName="url" 
-                           (change)="onFileSelected($event)"> 
-                  </label>
-                </div>
-                <div class="form-group">
-                  <label>Description/Caption
-                    <!-- textarea to write caption or description for image -->
-                    <textarea [(ngModel)]="selectedRow.caption" rows="4" cols="40"
-                    formControlName="caption"></textarea> 
-                  </label>
-                </div>
-                <div class="form-group">
-                  <button type="submit" class="btn btn-default submit-button">Submit</button>
-                </div>
-              </form>
+              <div>
+                <form [formGroup]="editForm" (ngSubmit)="update(selectedRow.id)" class="formPosition"> 
+                  <div class="form-group">
+                    <label for="id">Id:
+                      <!-- input field for id -->
+                      <input [(ngModel)]="selectedRow.id" formControlName="id" [attr.disabled]="true">
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <label for="myfile">Select files: {{selectedRow.url}}
+                      <input type="file" [(ngModel)]="selectedRow.url" formControlName="url"
+                            (change)="onFileSelected($event)"> <!-- input field to upload image -->
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <label>Description/Caption
+                      <!-- textarea to write caption or description for image -->
+                      <textarea [(ngModel)]="selectedRow.caption" rows="4" cols="40"
+                      formControlName="caption"></textarea> 
+                    </label>
+                  </div>
+                  <div class="form-group">  
+                      <button type="submit" class="btn btn-default submit-button">Submit</button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-        </div><!-- Modal body finish -->
+        </div> <!-- Modal body finish -->
       </ng-template>
-      
       <div class="container">
         <div class="row">
           <!-- button for adding more slides in table and displaying it in carousel -->
