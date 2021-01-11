@@ -63,6 +63,6 @@ export class EditFormModalComponent implements OnInit {
     this.editUser = this.editForm.value;
 
     console.log(this.editUser);
-    // this.addService.updateUser(this.editUser);
+   
   }
 }

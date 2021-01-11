@@ -35,7 +35,6 @@ ngb-carousel .wrapper>img {
   position: relative;
   margin: 4% auto 3%;
   width: 80%;
-  cursor: pointer;
   box-shadow: 2px 2px 7px #292929;;
 
   th , td{
@@ -50,15 +49,9 @@ ngb-carousel .wrapper>img {
     color: #fff;;
   }
 
-  tr:hover {
-    background-color: #DDD;
-  }
-  tr.selected {
-    background-color: #CFD8DC;
-  }
-  tr.selected:hover {
-    background-color: #BBD8DC;
-  }
+  tr:hover { background-color: #DDD; }
+  tr.selected { background-color: #CFD8DC; }
+  tr.selected:hover { background-color: #BBD8DC; }
 }
 .modal-dialog { max-width: 380px; }
 
@@ -68,4 +61,4 @@ ngb-carousel .wrapper>img {
 }
 .modal-header { background-color: #1f395c; }
 .close { color: #fff; }
-.modal-dialog-scrollable .modal-body { background-color: antiquewhite; }
+.modal-body { background-color: antiquewhite; box-shadow: 2px 2px 7px #292929; }

@@ -40,11 +40,8 @@ export class FormModalComponent implements OnInit {
 
   onFileSelected(event) {
     if(event.target.files) { 
-      var reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]);
-      reader.onload=(e:any)=>{
-        this.imageUrl = e.target.result;
-      }
+      let pathUrl = 'assets/images/';
+      this.imageUrl = pathUrl+ "" +event.target.files[0].name;
     }
   }
 

@@ -69,6 +69,38 @@ $hover-shadow: 2px 2px 7px #292929; //shadow and its color for button onhover ef
   }
 }
 
+.formPosition {
+  position: relative;
+  left: 5%;
+}
+  
+label {
+  width: 16em;
+  color: #607D8B;
+  font-weight: bold;
+  display: inline-table;
+}
+  
+input {
+  height: 2em;
+  font-size: 1em;
+  width: 90%;
+}
+
+.submit-button {
+  background: #1f395c;
+  border: none;
+  padding: 9px 22px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 17px;
+  color: #fff;
+  
+  &:hover {
+    box-shadow: $hover-shadow;
+  }
+}
+
 /******************************************RESPONSIVENESS******************************************/
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   .table-heading {

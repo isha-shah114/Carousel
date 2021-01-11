@@ -1,10 +1,10 @@
 import { Component, OnInit, VERSION } from '@angular/core';
-import { NgbModal, NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbCarouselConfig, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormModalComponent } from '../form-modal/form-modal.component';
-import { EditFormModalComponent } from '../edit-form-modal/edit-form-modal.component';
 import { Images } from '../images-interface';
 import { AddSlideService } from '../add-slide.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-slider',
@@ -15,22 +15,38 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 export class SliderComponent implements OnInit {
   name = 'Angular ' + VERSION.major;
+  editForm: FormGroup; //to store the value of form
+  formValue: any = []; //to store the value of dynamic form
   images: Images[]; // to store images array into variable
   members: any = [];
+  editUser: any = [];
   imageUrl: any;
   trustedUrl: SafeUrl;
 
   constructor(config: NgbCarouselConfig, 
+              private formBuilder: FormBuilder, 
               private _NgbModal: NgbModal, 
+              private _NgbActiveModal: NgbActiveModal,
               private addService: AddSlideService,
               private domSanitizer: DomSanitizer) {
+                
     // customize default values of carousels used by this component tree
     config.interval = 4000;
     config.keyboard = true;
     config.pauseOnHover = true;
   }
 
+  get activeModal() {
+    return this._NgbActiveModal;
+  }
+
   ngOnInit(): void {
+    // storing and declaring the fields of form
+    this.editForm = this.formBuilder.group({
+      id: [''],
+      url: [''],
+      caption: [''],
+    });
     this.getData();
   }
   getData(): void {
@@ -83,17 +99,25 @@ export class SliderComponent implements OnInit {
       },)
     })();
   } 
-
-  openEditForm() {
+  selectedRow;
+  openEditForm(targetModal, user) {
+    // this.editForm.patchValue({
+    //   myfile: user.url,
+    //   desc: user.caption,
+    //  });
+     
     //opening form into modal
-      this._NgbModal.open(EditFormModalComponent, {
+    
+    const modalRef = this._NgbModal.open(targetModal, {
         windowClass: 'modal-job-scrollable'
       });
+      this.selectedRow = {id:user.id, url:user.url, caption: user.caption};
+      console.log(this.selectedRow);
 
       // upwrap the "app-ng-modal" data to enable the "modal-dialog-scrollable"
     // and make the modal scrollable
     (() => {
-      const node: HTMLElement | null = document.querySelector('app-edit-form-modal');
+      const node: HTMLElement | null = document.querySelector('targetModal');
       if (node) {
         while (node.firstChild) {
           (node.parentNode as HTMLElement).insertBefore(node.firstChild, node);
@@ -109,4 +133,35 @@ export class SliderComponent implements OnInit {
       },)
     })();
   } 
+
+  update(e) {
+    this._NgbModal.dismissAll();
+    this.members = this.images;
+    this.editUser = this.members.filter(item => item.id == e);
+    console.log(this.editUser);
+    let userEdit = this.members.filter(item => item.id != e);
+    let user = this.members.filter(item => item.id == e);
+    console.log(userEdit);
+    
+    this.editUser = this.editForm.value;
+    console.log(this.editUser);
+
+    if(this.editUser.id == user[0].id)
+    {
+      userEdit.push(this.editUser);
+      this.images = userEdit;
+      console.log(userEdit);
+      console.log(this.images);
+    }
+
+    
+    
+    // alert('Updated');
+
+    // this.editForm.patchValue({
+    //   myfile: this.editUser.myfile,
+    //   desc: this.editUser.desc,
+    //  });
+     
+  }
 }
