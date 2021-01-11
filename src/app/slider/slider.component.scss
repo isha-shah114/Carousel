@@ -18,6 +18,11 @@ $hover-shadow: 2px 2px 7px #292929; //shadow and its color for button onhover ef
     padding-top: 3%;
 }
 
+.image-size {
+  height: 50px;
+  width: auto;
+}
+
 .delete-center { text-align: center; }
 .remove-button { font-size: small; }
 .add-button {
@@ -158,6 +163,7 @@ input {
     left: 37%;
     padding-top: 8%;
   }
+  .image-size { height: 25px; }
   .add-button {  
     left: 36%; 
     padding: 10px 14px; 
@@ -180,6 +186,7 @@ input {
     left: 37%;
     padding-top: 8%;
   }
+  .image-size { height: 25px; }
   .add-button {  
     left: 36%; 
     padding: 10px 14px; 
@@ -201,6 +208,7 @@ input {
     left: 37%;
     padding-top: 8%;
   }
+  .image-size { height: 20px; }
   .add-button { 
     left: 34%; 
     &:hover #circle {
@@ -220,10 +228,11 @@ input {
     left: 37%;
     padding-top: 8%;
   }
+  .image-size { height: 18px; }
   .add-button {  
     left: 34%; 
-    padding: 10px 14px; 
-    font-size: 14px;  
+    padding: 7px 12px;
+    font-size: 12px;
 
     &:hover #circle {
       height: 40px;
@@ -243,6 +252,7 @@ input {
     left: 37%;
     padding-top: 8%;
   }
+  .image-size { height: 18px; }
   .add-button {  
     padding: 8px 10px;
     border-radius: 7px;

@@ -10,6 +10,4 @@ export class AddSlideService {
   getData(): Images[] {
     return IMAGES;
   }
-
-  
 }

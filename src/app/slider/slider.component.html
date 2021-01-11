@@ -38,7 +38,7 @@
               <!-- fetching data from array and displaying it in table -->
               <tr *ngFor="let addData of images; index as i">
                 <td>{{addData.id}}</td>
-                <td>{{addData.url}}</td>
+                <td><img src = {{addData.url}} class="image-size"></td>
                 <td>{{addData.caption}}</td>
                 <td class="delete-center">
                   <button class="btn btn-success" (click)="openEditForm(editProfileModal, addData)">
@@ -78,7 +78,7 @@
                   <div class="form-group">
                     <label for="myfile">Select files: {{selectedRow.url}}
                       <input type="file" [(ngModel)]="selectedRow.url" formControlName="url"
-                            (change)="onFileSelected($event)"> <!-- input field to upload image -->
+                            (change)="onFileSelected($event, selectedRow.id)"> <!-- input field to upload image -->
                     </label>
                   </div>
                   <div class="form-group">
@@ -89,7 +89,7 @@
                     </label>
                   </div>
                   <div class="form-group">  
-                      <button type="submit" class="btn btn-default submit-button">Submit</button>
+                      <button type="submit" class="btn btn-default submit-button">Update</button>
                   </div>
                 </form>
               </div>

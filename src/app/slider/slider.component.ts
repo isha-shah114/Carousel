@@ -20,6 +20,7 @@ export class SliderComponent implements OnInit {
   images: Images[]; // to store images array into variable
   members: any = [];
   editUser: any = [];
+  selectedRow;
   imageUrl: any;
   trustedUrl: SafeUrl;
 
@@ -57,23 +58,7 @@ export class SliderComponent implements OnInit {
   deleteImage(image) {
     this.images.splice(image, 1); //delete data from existing array
   }
-  onFileSelected(event) {
-    this.imageUrl = this.images[0].url;
-    this.trustedUrl = this.domSanitizer.bypassSecurityTrustUrl(this.imageUrl);
-    
-    console.log(this.trustedUrl);
-    if(!event.target.files) { 
-      var reader = new FileReader();
-      event.target.files instanceof FileList
-              ? reader.readAsDataURL(event.target.files[0]) : 'handle exception'
-      // reader.readAsDataURL(event.target.files[0]);
-      console.log (this.images);
-      reader.onload=(e:any)=>{
-        this.trustedUrl = e.target.result;
-        console.log(this.trustedUrl);
-      }
-    }
-  }
+  
   openForm() {
     //opening form into modal
       this._NgbModal.open(FormModalComponent, {
@@ -99,7 +84,7 @@ export class SliderComponent implements OnInit {
       },)
     })();
   } 
-  selectedRow;
+  
   openEditForm(targetModal, user) {
     //opening form into modal
     const modalRef = this._NgbModal.open(targetModal, {
@@ -127,26 +112,32 @@ export class SliderComponent implements OnInit {
     })();
   } 
 
-  update(e) {
+  onFileSelected(event, e) {
     this.members = this.images;
     this.editUser = this.members.filter(item => item.id == e);
-    console.log(this.editUser);
-    this.editUser = this.editForm.value;
-    console.log(this.editUser);
-    
-    let userEdit = this.members.filter(item => item.id != e);
-    let user = this.members.filter(item => item.id == e);
-    console.log(userEdit);
-    
-    
-
-    if(this.editUser.id == user[0].id)
-    {
-      userEdit.push(this.editUser);
-      this.images = userEdit;
-      console.log(userEdit);
-      console.log(this.images);
+    this.imageUrl = this.editUser[0].url;
+    this.trustedUrl = this.domSanitizer.bypassSecurityTrustUrl(this.imageUrl);
+    if(event.target.files) { 
+      var reader = new FileReader();
+      event.target.files instanceof FileList
+              ? reader.readAsDataURL(event.target.files[0]) : 'handle exception'
+      reader.onload=(e:any)=>{
+        this.imageUrl = e.target.result;
+      }
     }
-    alert('Updated');
+  }
+  update(e) {
+    this.editUser = this.editForm.value;
+    this.editUser.url = this.imageUrl;
+    for(let i = 0; i < this.images.length; i++)
+    {
+      if(this.images[i].id == this.editUser.id)
+      {
+        this.images[i].id = this.editUser.id;
+        this.images[i].url = this.editUser.url;
+        this.images[i].caption = this.editUser.caption;
+        alert('Updated');
+      }
+    }
   }
 }

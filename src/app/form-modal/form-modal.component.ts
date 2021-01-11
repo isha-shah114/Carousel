@@ -40,8 +40,13 @@ export class FormModalComponent implements OnInit {
 
   onFileSelected(event) {
     if(event.target.files) { 
-      let pathUrl = 'assets/images/';
-      this.imageUrl = pathUrl+ "" +event.target.files[0].name;
+      var reader = new FileReader(); //to convert path into safe path
+      event.target.files instanceof FileList
+              ? reader.readAsDataURL(event.target.files[0]) : 'handle exception'
+      reader.onload=(e:any)=>{
+        this.imageUrl = e.target.result;
+        console.log(this.imageUrl);
+      }
     }
   }
 
@@ -56,6 +61,5 @@ export class FormModalComponent implements OnInit {
     });
     alert('Data added successfully');
     this.sliderForm.reset(); //resetting form after getting submitted
-    console.log (this.images);
   }
 }
